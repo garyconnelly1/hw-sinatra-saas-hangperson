@@ -73,7 +73,7 @@ class HangpersonApp < Sinatra::Base
   
   get '/lose' do
     ### YOUR CODE HERE ###
-     if @game.check_win_or_lose == :lose
+     if @game.check_win_or_lose == :lose ## So that the user cannot type /lose in the address bar.
     erb :lose # You may change/remove this line
   end
   end
