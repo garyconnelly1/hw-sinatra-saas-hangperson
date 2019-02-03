@@ -41,7 +41,7 @@ class HangpersonApp < Sinatra::Base
     letter = params[:guess].to_s[0]
     ### YOUR CODE HERE ###
     #HangpersonGame.guess(letter)
-    @game.guess(letter)
+   # @game.guess(letter)
     redirect '/show'
   end
   
