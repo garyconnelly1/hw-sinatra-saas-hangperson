@@ -42,9 +42,8 @@ class HangpersonApp < Sinatra::Base
     ### YOUR CODE HERE ###
     #HangpersonGame.guess(letter)
    # @game.guess(letter)
-    # If a guess is repeated, set flash[:message] to "You have already used that letter."
     if !@game.guess(letter)
-       flash[:message] = "You have already used that letter"
+       flash[:message] = "Invalid guess."
     end
     redirect '/show'
   end
