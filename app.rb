@@ -73,6 +73,9 @@ class HangpersonApp < Sinatra::Base
     ### YOUR CODE HERE ###
      if @game.check_win_or_lose == :win ## So that the user cannot type /win in the address bar.
     erb :win # You may change/remove this line
+  else
+    redirect '/show'
+    
   end
   end
   
@@ -80,6 +83,8 @@ class HangpersonApp < Sinatra::Base
     ### YOUR CODE HERE ###
      if @game.check_win_or_lose == :lose ## So that the user cannot type /lose in the address bar.
     erb :lose # You may change/remove this line
+    else
+    redirect '/show'
   end
   end
   
