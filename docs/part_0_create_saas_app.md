@@ -162,15 +162,24 @@ Deploy to Heroku
 ----------------
 Heroku is a cloud platform-as-a-service (PaaS) where we can deploy our Sinatra (and later Rails) applications in a more robust way than via Cloud9. If you don't have an account yet, go sign up at http://www.heroku.com. You'll need your login and password for the next step.
 
-If you're developing locally, install Heroku CLI following [instructions](https://devcenter.heroku.com/articles/heroku-cli).
+We'll be interacting with Heroku directly from the terminal using the Heroku command-line interface (CLI). First, we'll need to install this. How this is done depends on your development environment:
 
-If using Cloud9, update your Heroku Toolbelt installation by typing the following command:
+#### AWS Cloud9 (Amazon Linux)
+The default AWS Cloud9 environment is backed by an EC2 instance running Amazon Linux. Run the following commands in the terminal to set up the Herok CLI on this flavour of Linux:
+```bash
+wget -P /home/ec2-user/ https://cli-assets.heroku.com/heroku-linux-x64.tar.gz
+tar -xf /home/ec2-user/heroku-linux-x64.tar.gz -C /home/ec2-user
+echo 'export PATH=$PATH:~/heroku/bin' >> ~/.bashrc
+source ~/.bashrc
+```
 
+#### Windows Subsystem for Linux (Ubuntu Linux)
+If you're running Ubuntu  with Windows Subsystem for Linux, or you're running Ubuntu in some other setup, run the following command in the terminal to set up the Heroku CLI:
 ```
 $ wget -O- https://toolbelt.heroku.com/install-ubuntu.sh | sh
 ```
 
-Log in to your Heroku account by typing the command: `heroku login` in the terminal. This will connect you to your Heroku account.
+Once the CLI is successfully installed, log in to your Heroku account by typing the command: `heroku login -i` in the terminal. You'll be prompted for your login credentials. Once logged in, your workspace will be connected to your Heroku account.
 
 While in the root directory of your project (not your whole workspace), type `heroku create` to create a new project in Heroku. This will tell the Heroku service to prepare for some incoming code, and locally it will add a remote git repository for you called `heroku`.
 
@@ -187,6 +196,8 @@ This tells Heroku to start a single web worker (Dyno) using essentially the same
 Your local repo is now ready to deploy to Heroku:
 
 ```
+$ heroku buildpacks:set https://github.com/bundler/heroku-buildpack-bundler2
+
 $ git push heroku master
 ```
 
